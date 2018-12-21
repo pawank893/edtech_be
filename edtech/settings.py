@@ -25,7 +25,7 @@ SECRET_KEY = 'a#&%sb%b2ian0_5p43^86musnbp$a31)7ulrav@$c#4)!sd9wc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '']
 
 
 # Application definition
@@ -67,6 +67,13 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    )
+}
 
 WSGI_APPLICATION = 'edtech.wsgi.application'
 
