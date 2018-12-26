@@ -8,6 +8,7 @@ import json
 
 from edtech.apis.api_error_response import APIErrorResponse
 from edtech.apis.edtech_api import EdtechAPI
+from edtech.models.test_series import TestSeries
 
 
 class _LoginRequestDTO(serializers.Serializer):
@@ -23,6 +24,9 @@ class _LoginRequestDTO(serializers.Serializer):
 
 class LoginAPI(EdtechAPI):
     authentication_classes = (BasicAuthentication,)
+
+    def options(self, request, *args, **kwargs):
+        return APIErrorResponse.method_not_allowed()
 
     def post(self, request):
         lr_dto = _LoginRequestDTO(data=request.data)
@@ -45,6 +49,9 @@ class LoginAPI(EdtechAPI):
                 "userId": user.id,
                 "email": user.email,
             }
+
+            request.session['test_series_id'] = TestSeries.objects.order_by('?').first().id
+            request.session['question_no'] = 1
 
             response.set_cookie('authenticated_user', urllib.quote(json.dumps(authenticated_user_cookie_map)))
             return response

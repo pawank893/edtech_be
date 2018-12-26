@@ -6,7 +6,7 @@ from edtech.models.mixins import DefaultPermissions
 
 
 class Choice(TimeStampedModel, DefaultPermissions):
-    question = models.ForeignKey(Question)
+    question = models.ForeignKey(Question, related_name='options')
     is_choice_correct = models.BooleanField(default=False)
     choice = models.CharField(max_length=100)
 

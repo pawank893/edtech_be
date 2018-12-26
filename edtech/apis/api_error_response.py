@@ -21,3 +21,15 @@ class APIErrorResponse(object):
         return cls.__prep_error_response(error_code=1200,
                                          message="Invalid credentials for user {user}".format(user=user),
                                          response_code=status.HTTP_401_UNAUTHORIZED)
+
+    @classmethod
+    def method_not_allowed(cls,):
+        return cls.__prep_error_response(error_code=1201,
+                                         message="method not supported",
+                                         response_code=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    @classmethod
+    def forbidden_action(cls, ):
+        return cls.__prep_error_response(error_code=1202,
+                                         message="method not supported",
+                                         response_code=status.HTTP_403_FORBIDDEN)

@@ -25,7 +25,7 @@ SECRET_KEY = 'a#&%sb%b2ian0_5p43^86musnbp$a31)7ulrav@$c#4)!sd9wc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.localhost.com']
 
 
 # Application definition
@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'corsheaders',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -43,12 +44,23 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000',
+)
+CORS_ORIGIN_REGEX_WHITELIST = (
+    'localhost:3000',
+)
+
 
 ROOT_URLCONF = 'edtech.urls'
 

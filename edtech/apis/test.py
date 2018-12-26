@@ -5,7 +5,7 @@ from edtech.apis.edtech_api import EdtechAPI
 
 
 class TestAPI(EdtechAPI):
-    authentication_classes = (BasicAuthentication, SessionAuthentication)
+    # authentication_classes = (BasicAuthentication, )
 
-    def get(self, request, format=None):
+    def post(self, request, format=None):
         return Response({"status": "true"})

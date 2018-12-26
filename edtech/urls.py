@@ -18,11 +18,13 @@ from django.contrib import admin
 
 from edtech.apis.login import LoginAPI
 from edtech.apis.logout import LogoutAPI
+from edtech.apis.question import QuestionAPI
 from edtech.apis.test import TestAPI
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^login/', LoginAPI.as_view()),
-    url(r'^logout/', LogoutAPI.as_view()),
-    url(r'^test/$', TestAPI.as_view())
+    url(r'^api/login/', LoginAPI.as_view()),
+    url(r'^api/logout/', LogoutAPI.as_view()),
+    url(r'^test/$', TestAPI.as_view()),
+    url(r'^api/question/$', QuestionAPI.as_view())
 ]
