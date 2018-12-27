@@ -13,3 +13,4 @@ class UserQuestionAnswer(TimeStampedModel, DefaultPermissions):
     question = models.ForeignKey(Question)
     choice = models.ForeignKey(Choice)
     is_correct = models.BooleanField(default=False)
+    session_end = models.BooleanField(default=False)

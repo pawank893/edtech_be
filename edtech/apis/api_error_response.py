@@ -33,3 +33,21 @@ class APIErrorResponse(object):
         return cls.__prep_error_response(error_code=1202,
                                          message="method not supported",
                                          response_code=status.HTTP_403_FORBIDDEN)
+
+    @classmethod
+    def test_series_not_selected(cls, ):
+        return cls.__prep_error_response(error_code=1202,
+                                         message="test series not selected",
+                                         response_code=status.HTTP_400_BAD_REQUEST)
+
+    @classmethod
+    def valid_test_series_not_selected(cls, ):
+        return cls.__prep_error_response(error_code=1202,
+                                         message="valid test series not selected",
+                                         response_code=status.HTTP_400_BAD_REQUEST)
+
+    @classmethod
+    def internal_server_error(cls, ):
+        return cls.__prep_error_response(error_code=1203,
+                                         message="something sent wrong",
+                                         response_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
