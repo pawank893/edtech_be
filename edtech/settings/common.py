@@ -11,27 +11,17 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from configurations import Configuration, values
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
 class Common(Configuration):
-    # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = 'a#&%sb%b2ian0_5p43^86musnbp$a31)7ulrav@$c#4)!sd9wc'
 
-    # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = False
 
     ALLOWED_HOSTS = ['*']
-
-
-    # Application definition
 
     INSTALLED_APPS = [
         'django.contrib.admin',
@@ -64,7 +54,6 @@ class Common(Configuration):
         'localhost:3006',
     )
 
-
     ROOT_URLCONF = 'edtech.urls'
 
     TEMPLATES = [
@@ -92,24 +81,16 @@ class Common(Configuration):
 
     WSGI_APPLICATION = 'edtech.wsgi.application'
 
-
-    # Database
-    # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'edtech',
             'USER': 'root',
             'PASSWORD': 'root',
-            'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
+            'HOST': '127.0.0.1',
             'PORT': '3306',
         }
     }
-
-
-    # Password validation
-    # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
     AUTH_PASSWORD_VALIDATORS = [
         {
@@ -126,10 +107,6 @@ class Common(Configuration):
         },
     ]
 
-
-    # Internationalization
-    # https://docs.djangoproject.com/en/1.11/topics/i18n/
-
     LANGUAGE_CODE = 'en-us'
 
     TIME_ZONE = 'UTC'
@@ -139,9 +116,5 @@ class Common(Configuration):
     USE_L10N = True
 
     USE_TZ = True
-
-
-    # Static files (CSS, JavaScript, Images)
-    # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
     STATIC_URL = '/static/'
