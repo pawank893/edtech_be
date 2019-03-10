@@ -68,7 +68,7 @@ class QuestionAPI(EdtechAPI):
             except Exception as e:
                 return APIResponse.no_content()
 
-            options = selected_q.options.all().values('id', 'choice')
+            options = selected_q.options.all().values('id', 'choice', 'type')
 
             options_list = []
 
@@ -81,7 +81,7 @@ class QuestionAPI(EdtechAPI):
                 answered_choice = None
 
             for option in options:
-                tmp = {'id': option['id'], 'choice': option['choice'], 'answered': False}
+                tmp = {'id': option['id'], 'choice': option['choice'], 'answered': False, 'type': option['type']}
                 if answered_choice and option['id'] == answered_choice.choice.id:
                     tmp['answered'] = True
                 options_list.append(tmp)
