@@ -13,15 +13,37 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 from configurations import Configuration, values
 
+from edtech.settings import log_conf
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class Common(Configuration):
     SECRET_KEY = 'a#&%sb%b2ian0_5p43^86musnbp$a31)7ulrav@$c#4)!sd9wc'
 
-    DEBUG = False
+    DEBUG = values.BooleanValue(True)
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': 'debug.log',
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['file'],
+                'level': 'DEBUG',
+                'propagate': True,
+            },
+        },
+    }
 
     ALLOWED_HOSTS = ['*']
+    LOGGING = log_conf.get(log_root='logs', handler='logging.handlers.TimedRotatingFileHandler', formatter='verbose')
 
     INSTALLED_APPS = [
         'django.contrib.admin',
@@ -118,3 +140,4 @@ class Common(Configuration):
     USE_TZ = True
 
     STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static/')

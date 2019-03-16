@@ -63,5 +63,5 @@ class TestSeriesAPI(EdtechAPI):
             return APIErrorResponse.test_series_not_selected()
         except UserNotAuthenticated:
             return APIErrorResponse.forbidden_action()
-        except:
-            return APIErrorResponse.internal_server_error()
+        except Exception as e:
+            return APIErrorResponse.internal_server_error(e.message)

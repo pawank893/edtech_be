@@ -5,7 +5,6 @@ bind = "0.0.0.0:8002"
 workers = 4
 
 keepalive = 300
-worker_tmp_dir = '/gunicorn-tmp'
 
 worker_class = "gevent"
 timeout = 300

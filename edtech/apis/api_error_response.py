@@ -47,7 +47,7 @@ class APIErrorResponse(object):
                                          response_code=status.HTTP_400_BAD_REQUEST)
 
     @classmethod
-    def internal_server_error(cls, ):
+    def internal_server_error(cls, msg=""):
         return cls.__prep_error_response(error_code=1203,
-                                         message="something sent wrong",
+                                         message=msg,
                                          response_code=status.HTTP_500_INTERNAL_SERVER_ERROR)

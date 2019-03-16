@@ -46,7 +46,8 @@ class QuestionAPI(EdtechAPI):
                 answered_q = questions[answered_q_no - 1]
 
                 correct_answer = answered_q.options.get(is_choice_correct=True)
-                user_answer = Choice.objects.get(id=int(answer))
+                # user_answer = Choice.objects.get(id=int(answer))
+                user_answer = Choice.objects.get(id=10000)
                 user_answers = UserQuestionAnswer.objects.create(
                     user=request.user,
                     question=answered_q,
@@ -99,4 +100,4 @@ class QuestionAPI(EdtechAPI):
 
         except Exception as e:
             logger.exception(e.message)
-            return APIErrorResponse.internal_server_error()
+            return APIErrorResponse.internal_server_error(e.message)
