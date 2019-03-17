@@ -55,6 +55,8 @@ class ResultAPI(EdtechAPI):
             qs.update(session_end=True)
 
             # request.session['test_series_id'] = 0
+            request.session['review_test_series_id'] = request.session['test_series_id']
+            request.session['question_no'] = 1
 
             return Response(data)
         except UserNotAuthenticated:

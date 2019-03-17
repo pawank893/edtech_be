@@ -17,3 +17,8 @@ class APIResponse(object):
     def no_content(cls, ):
         return cls.__prep_response(message="no content",
                                    response_code=status.HTTP_204_NO_CONTENT)
+
+    @classmethod
+    def no_last_test_done(cls, ):
+        return cls.__prep_response(message="no content",
+                                   response_code=status.HTTP_400_BAD_REQUEST)
