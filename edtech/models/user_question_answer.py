@@ -11,6 +11,6 @@ from edtech.models.mixins import DefaultPermissions
 class UserQuestionAnswer(TimeStampedModel, DefaultPermissions):
     user = models.ForeignKey(User)
     question = models.ForeignKey(Question)
-    choice = models.ForeignKey(Choice)
+    choice = models.ForeignKey(Choice, null=True)
     is_correct = models.BooleanField(default=False)
     session_end = models.BooleanField(default=False)

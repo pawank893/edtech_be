@@ -46,13 +46,14 @@ class QuestionAPI(EdtechAPI):
                 answered_q = questions[answered_q_no - 1]
 
                 correct_answer = answered_q.options.get(is_choice_correct=True)
-                user_answer = Choice.objects.get(id=int(answer))
-                user_answers = UserQuestionAnswer.objects.create(
+                choice = Choice.objects.get(id=int(answer))
+                user_answers, created = UserQuestionAnswer.objects.get_or_create(
                     user=request.user,
                     question=answered_q,
-                    choice=user_answer,
-                    is_correct=correct_answer.id == user_answer.id
+                    session_end=False
                 )
+                user_answers.is_correct = correct_answer.id == choice.id
+                user_answers.choice = choice
 
                 user_answers.save()
 
@@ -66,6 +67,7 @@ class QuestionAPI(EdtechAPI):
             try:
                 selected_q = questions[question_no - 1]
             except Exception as e:
+                logger.info("No question available. Error {error}".format(error=e.message))
                 return APIResponse.no_content()
 
             options = selected_q.options.all().values('id', 'choice', 'type')

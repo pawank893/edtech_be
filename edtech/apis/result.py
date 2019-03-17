@@ -54,7 +54,7 @@ class ResultAPI(EdtechAPI):
             qs = UserQuestionAnswer.objects.filter(user=request.user)
             qs.update(session_end=True)
 
-            request.session['test_series_id'] = 0
+            # request.session['test_series_id'] = 0
 
             return Response(data)
         except UserNotAuthenticated:
