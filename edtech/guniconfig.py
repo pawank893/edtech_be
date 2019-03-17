@@ -2,7 +2,7 @@ from psycogreen.gevent import patch_psycopg
 
 bind = "0.0.0.0:8002"
 
-workers = 4
+workers = 2
 
 keepalive = 300
 

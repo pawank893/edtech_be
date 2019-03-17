@@ -30,14 +30,14 @@ class ResultAPI(EdtechAPI):
 
             answered_choices = UserQuestionAnswer.objects.filter(user=request.user,
                                                                  question__id__in=questions,
-                                                                 session_end=False,
+                                                                 # session_end=False,
                                                                  ).order_by('-id')
             question_ans_mapping = dict()
             correct_choices = 0
             wrong_choices = 0
 
             for ac in answered_choices:
-                if not question_ans_mapping.get(ac.question.id):
+                if question_ans_mapping.get(ac.question.id) is None:
                     question_ans_mapping[ac.question.id] = ac.is_correct
                     if ac.is_correct:
                         correct_choices += 1
