@@ -84,6 +84,8 @@ class QuestionAPI(EdtechAPI):
 
             for option in options:
                 tmp = {'id': option['id'], 'choice': option['choice'], 'answered': False, 'type': option['type']}
+                if option['type'] == "Image":
+                    tmp['type'] = tmp['type'].replace("s3.us-east-2.amazonaws.com/edtech-ameltus", "cdn-imgix-open.ameltus.com")
                 if answered_choice and option['id'] == answered_choice.choice.id:
                     tmp['answered'] = True
                 options_list.append(tmp)
