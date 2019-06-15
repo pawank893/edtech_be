@@ -51,3 +51,9 @@ class APIErrorResponse(object):
         return cls.__prep_error_response(error_code=1203,
                                          message=msg,
                                          response_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    @classmethod
+    def user_already_exist(cls, email):
+        return cls.__prep_error_response(error_code=1203,
+                                         message=email + " already exists",
+                                         response_code=status.HTTP_409_CONFLICT)
